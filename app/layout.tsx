@@ -58,6 +58,15 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           {children}
         </ThemeProvider>
+        <Script id="kill-v0" strategy="afterInteractive">{`
+          (function () {
+            const remove = () => {
+              document.querySelectorAll('div[id^="v0-built-with-button"]').forEach(el => el.remove());
+            };
+            remove();
+            new MutationObserver(remove).observe(document.body, { childList: true, subtree: true });
+          })();
+        `}</Script>
       </body>
     </html>
   )
