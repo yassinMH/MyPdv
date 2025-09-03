@@ -59,15 +59,24 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           {children}
         </ThemeProvider>
-        <Script id="kill-v0" strategy="afterInteractive">{`
-          (function () {
-            const remove = () => {
-              document.querySelectorAll('div[id^="v0-built-with-button"]').forEach(el => el.remove());
-            };
-            remove();
-            new MutationObserver(remove).observe(document.body, { childList: true, subtree: true });
-          })();
-        `}</Script>
+          <Script id="kill-v0" strategy="afterInteractive">{`
+            (function () {
+              const clickClose = () => {
+                // Find all v0 buttons
+                document.querySelectorAll('div[id^="v0-built-with-button"]').forEach(el => {
+                  const closeButton = el.querySelector('button[aria-label="Close"]');
+                  if (closeButton) closeButton.click();
+                });
+              };
+          
+              // Run immediately in case it's already there
+              clickClose();
+          
+              // Observe for future additions
+              new MutationObserver(clickClose).observe(document.body, { childList: true, subtree: true });
+            })();
+          `}</Script>
+
       </body>
     </html>
   )
