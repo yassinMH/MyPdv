@@ -95,11 +95,7 @@ export function Header() {
             >
               Contactez-nous
             </Link>
-            <Button asChild className="bg-orange-500 hover:bg-orange-600 text-white w-full">
-              <Link href="/contact" onClick={() => setIsMenuOpen(false)}>
-                Contactez-nous
-              </Link>
-            </Button>
+
           </nav>
         </div>
       )}
