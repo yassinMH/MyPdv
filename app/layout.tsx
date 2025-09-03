@@ -60,22 +60,22 @@ export default function RootLayout({
           {children}
         </ThemeProvider>
           <Script id="kill-v0" strategy="afterInteractive">{`
-            (function () {
-              const clickClose = () => {
+            (function removeV0Button() {
+              const interval = setInterval(() => {
                 // Find all v0 buttons
-                document.querySelectorAll('div[id^="v0-built-with-button"]').forEach(el => {
-                  const closeButton = el.querySelector('button[aria-label="Close"]');
-                  if (closeButton) closeButton.click();
-                });
-              };
-          
-              // Run immediately in case it's already there
-              clickClose();
-          
-              // Observe for future additions
-              new MutationObserver(clickClose).observe(document.body, { childList: true, subtree: true });
+                const v0Buttons = document.querySelectorAll('div[id^="v0-built-with-button"]');
+                if (v0Buttons.length) {
+                  v0Buttons.forEach(el => {
+                    const closeBtn = el.querySelector('button[aria-label="Close"]');
+                    if (closeBtn) closeBtn.click(); // click the close button
+                    el.remove(); // remove the element just in case
+                  });
+                  clearInterval(interval); // stop checking once removed
+                }
+              }, 100); // check every 100ms
             })();
           `}</Script>
+
 
       </body>
     </html>
