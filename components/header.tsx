@@ -53,9 +53,7 @@ export function Header() {
         <div className="hidden md:block">
 
         </div>
-        <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">
-          {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
+
       </div>
       {isMenuOpen && (
         <div className="md:hidden p-4 pt-0 bg-white">
