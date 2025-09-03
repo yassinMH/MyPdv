@@ -51,9 +51,7 @@ export function Header() {
           </Link>
         </nav>
         <div className="hidden md:block">
-          <Button asChild className="bg-orange-500 hover:bg-orange-600 text-white">
-            <Link href="/contact">Contactez-nous</Link>
-          </Button>
+
         </div>
         <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">
           {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
